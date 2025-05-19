@@ -2,9 +2,9 @@ const Home = ()=>{
     return (
         <>
             <div>
-                <div className="text-2xl text-red-600">
-                    <p>Welcome to AiQuestionGenerator</p>
-                    <p>What kind of question do you want to create!</p>
+                <div className="flex flex-col items-center">
+                    <p className="text-4xl font-bold">Welcome to AiQuestionGenerator</p>
+                    <p className="text-2xl">What kind of question do you want to create!</p>
                 </div>
                 <div>
                     <button>MCQ's</button>
