@@ -5,7 +5,7 @@ import axios from "axios";
 
 export function AIQuestionContext(props){
 
-    const URL = "http://127.0.0.1:5001/question/askquestion";
+    const URL = import.meta.env.VITE_BackendURL;
 
     const [questionDetails,setQuestionDetails] = useState({
         typeOfQuestion : "",
