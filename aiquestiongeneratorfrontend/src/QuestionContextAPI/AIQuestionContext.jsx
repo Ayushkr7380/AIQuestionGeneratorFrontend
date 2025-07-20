@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import { useState } from "react";
 import { CreateQuestionContext } from "./CreateQuestionContext";
+import axios from "axios";
 
 export function AIQuestionContext(props){
 
@@ -13,6 +14,9 @@ export function AIQuestionContext(props){
         numberOfQuestions : ""
     });
 
+    const [loading , setLoading] = useState(false);
+    const [generatedQuestions , setGeneratedQuestions] = useState([]);
+    const [blurGenerated , setBlurGenerated] = useState(false);
     // const DetailsForQuestions = {
     //     typeOfQuestion : typeOfQuestion,
     //     subjectName:subjectName,
@@ -24,13 +28,31 @@ export function AIQuestionContext(props){
     //     const generate = await axios.get(URL,DetailsForQuestions,{ withCredentials: true });
     // }
 
-    function generateQuestions(){
+    async function generateQuestions(){
         console.log(questionDetails);
+
+        try {
+            setLoading(true);
+            setBlurGenerated(true);
+            const response = await axios.post(URL,questionDetails,{ withCredentials: true });
+            if(!response){
+                console.log("Failed to generate questions.");
+            }
+
+            console.log(response.data);
+            setGeneratedQuestions(response.data?.questions);
+        } catch (error) {
+            console.log(error.response?.data || error.message);
+        }
+        finally{
+            setLoading(false);
+            setBlurGenerated(false);
+        }
     }
     
     return (
         <>
-            <CreateQuestionContext.Provider value={{questionDetails,setQuestionDetails,generateQuestions}}>
+            <CreateQuestionContext.Provider value={{questionDetails,setQuestionDetails,generateQuestions,setLoading,loading ,generatedQuestions,blurGenerated}}>
                 {props.children}
             </CreateQuestionContext.Provider>
         </>
