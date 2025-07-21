@@ -70,6 +70,7 @@ const Home = ()=>{
 
                             <label className="text-sm font-semibold">Number of Questions:</label>
                             <input 
+                            
                             type="text" 
                             placeholder="Total Number" 
                             className="rounded border-1 md:m-2 m-1 px-2 w-[150px] md:w-auto"
@@ -95,7 +96,7 @@ const Home = ()=>{
                                         }
                         </div>
                         <button className="bg-amber-950 text-white m-2 px-1 rounded cursor-pointer text-center"
-                         onClick={()=>generateQuestions()}>Generate</button>
+                         onClick={()=>generateQuestions()} >Generate</button>
                         
                     </div>
                 </>}

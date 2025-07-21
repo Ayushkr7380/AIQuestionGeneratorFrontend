@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { CreateQuestionContext } from "./CreateQuestionContext";
 import axios from "axios";
+import { showErrorToast, showSuccessToast } from "../utils/Toastify";
 
 export function AIQuestionContext(props){
 
@@ -30,6 +31,10 @@ export function AIQuestionContext(props){
 
     async function generateQuestions(){
         console.log(questionDetails);
+        if(parseInt(questionDetails.numberOfQuestions) <= 0 || isNaN(questionDetails.numberOfQuestions)){
+            showErrorToast("Please enter a valid number");
+            return;
+        }
 
         try {
             setLoading(true);
@@ -41,6 +46,7 @@ export function AIQuestionContext(props){
 
             console.log(response.data);
             setGeneratedQuestions(response.data?.questions);
+            showSuccessToast("Questions generated successfully..");
         } catch (error) {
             console.log(error.response?.data || error.message);
         }
