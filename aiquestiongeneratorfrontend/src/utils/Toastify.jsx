@@ -2,8 +2,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Toastify = () => <ToastContainer
-    position="top-center"
-    autoClose={3000} // ⏱️ Toast will auto close in 3 seconds
+    position="top-right"
+    autoClose={2000} 
     hideProgressBar={false}
     newestOnTop={false}
     closeOnClick
